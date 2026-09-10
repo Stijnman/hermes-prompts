@@ -91,6 +91,12 @@ The capabilities pool is saved in the following cloud locations:
 - ✅ CHANGELOG maintenance
 - ✅ CONTRIBUTORS tracking
 
+#### Repository Intelligence
+- ✅ Check today's top repositories
+- ✅ Check yesterday's top repositories
+- ✅ Analyze trending repositories
+- ✅ Track repository growth metrics
+
 ---
 
 ## 🚀 How to Access
@@ -121,8 +127,8 @@ cat MistralVibe_Pool.json
 
 | Category | Count |
 |----------|-------|
-| Total Capabilities | 12 categories |
-| Sub-capabilities | 60+ specific skills |
+| Total Capabilities | 13 categories |
+| Sub-capabilities | 70+ specific skills |
 | Programming Languages | 9 (2 expert, 7 advanced) |
 | Frameworks & Tools | 20+ |
 | File Formats | 2 (Markdown, JSON) |

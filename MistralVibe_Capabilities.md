@@ -122,6 +122,18 @@ Mistral Vibe is a CLI-based AI agent designed for autonomous code and repository
 - **Understand domain-specific concepts**
 - **Analyze security vulnerabilities**
 
+### 13. Repository Intelligence & Analysis
+- **Check today's top repositories** on GitHub by stars, forks, or trending
+- **Check yesterday's top repositories** with time-based filtering
+- **Analyze trending repositories** across languages and topics
+- **Identify popular repositories** in specific categories
+- **Track repository growth** and popularity metrics
+- **Search repositories** by date range, language, stars
+- **Compare repository statistics** across time periods
+- **Find most starred/forked repos** for any timeframe
+- **Generate repository rankings** and insights
+- **Monitor GitHub trends** for specific ecosystems
+
 ---
 
 ## 🎓 Language & Framework Expertise
