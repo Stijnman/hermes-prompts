@@ -73,7 +73,7 @@ A curated collection of Hermes Agent prompts, commands, and tricks — categoriz
 ## 🔧 Handy Config Settings (via `hermes config set`)
 
 | Key | Default | Example |
-|-----|---------|---------|
+|-----|---------|-------|
 | `model.default` | gemini-3.5-flash | `hermes config set model.default google/gemma-4-31b-it:free` |
 | `model.provider` | openrouter | `hermes config set model.provider openrouter` |
 | `voice.default` | false | `hermes config set voice.default true` — TTS on by default |
@@ -243,12 +243,87 @@ EOF
 
 ---
 
+## 🔐 Secrets & Credential Management
+
+| Prompt / Command | What It Does |
+|------------------|-------------|
+| `hermes auth list` | List all stored API keys and credentials per provider |
+| `hermes auth add PROVIDER` | Add a new API key for a provider interactively | `hermes auth add openrouter` |
+| `hermes auth remove PROVIDER` | Remove a stored credential | `hermes auth remove openrouter` |
+| `hermes auth reset PROVIDER` | Clear exhaustion/status for a provider | `hermes auth reset openrouter` |
+| `hermes auth` | Interactive credential manager (gateway `/auth` menu) | Full OAuth and API key setup flow |
+| `hermes config set <provider>.key_env <VAR>` | Set which env var holds the API key | `hermes config set providers.gemini.key_env GOOGLE_API_KEY` |
+| `hermes config env-path` | Print path to `.env` file | Use to manually edit API keys |
+| `HERMES_API_KEY` / `OPENROUTER_API_KEY` / `GOOGLE_API_KEY` | Env vars placed in `~/.hermes/.env` | Never commit these to git — keep in `.env` (chmod 600) |
+| `hermes config set security.redact_secrets true` | On by default — redacts credential-like strings from tool output before they enter context | ✅ Recommended keep enabled |
+| `/config set privacy.redact_pii true` | Hashes user IDs, strips phone numbers from session context before model sees them | 🔒 Privacy protection |
+| `/yolo` | Bypass ALL approvals AND secret redaction for one invocation only | 🚨 Use only for debugging — never with sensitive data |
+| `hermes doctor` | Checks for missing/outdated config, validates API key presence | 🏥 Run regularly to verify your setup |
+| `hermes config check` | Quick config validity scan | ⚡ Fast status check |
+
+### **Rotating / Refreshing Keys:**
+
+```bash
+# 1. Get new key from provider dashboard
+# 2. Edit .env directly (recommended):
+nano ~/.hermes/.env
+# 3. Update the specific key line
+# 4. Restart Hermes so new key loads:
+hermes gateway restart
+# 5. Or reset exhaustion status:
+hermes auth reset openrouter
+```
+
+### **Best Practices:**
+
+| Practice | Command / Note |
+|----------|---------------|
+| **Keep redaction on** | `/config set security.redact_secrets true` — never disable unless debugging |
+| **Use `.env` not config.yaml** | API keys → `~/.hermes/.env` (chmod 600), never in git |
+| **Rotate regularly** | `hermes auth reset <provider>` clears exhaustion state |
+| **Never use `--yolo` with real keys** | Bypass disables secret redaction too |
+| **Check doctor after changes** | `hermes doctor` validates all keys are present and valid |
+| **Use `hermes config env-path`** | Find `.env` path quickly for manual edits |
+| **Credential pools** | Multiple keys per provider rotate automatically; `hermes auth list` shows order |
+
+---
+
+## 🔍 Quick Secrets Checklist
+
+Before running sensitive tasks, verify:
+
+- [ ] `hermes doctor` passes with no warnings
+- [ ] `.env` file has correct keys (not checked into git)
+- [ ] `security.redact_secrets: true` in config
+- [ ] `privacy.redact_pii: true` in config (recommended)
+- [ ] Provider keys have not expired
+- [ ] `--yolo` is NOT used with real data
+- [ ] `hermes auth list` shows expected providers
+- [ ] `hermes config check` returns no errors
+
+---
+
+## 🛡️ Security & Privacy Prompts (recap)
+
+| Prompt | Effect |
+|--------|--------|
+| `/config set security.redact_secrets true` | On by default — redacts API keys from tool output |
+| `/config set privacy.redact_pii true` | Hashes user IDs, strips phone numbers from session context |
+| `/config set approvals.mode smart` | Smart auto-approve low-risk, prompt on high-risk |
+| `/config set tts.enabled false` | Disable TTS entirely |
+| `/config set tts.auto_tts false` | Don't auto-speak responses |
+| `/yolo` | Bypass all approvals for one invocation |
+
+---
+
 **Last updated:** 2026-09-10
 
 **Repository:** `https://github.com/Stijnman/hermes-prompts`
 
-**Feel free to:** 
+**Feel free to:**
 - Fork this repo and add your own prompts
 - Open issues with prompts you've discovered
 - Submit PRs with new categories or workflows
 - Use `hermes curator status` to see which skills are most active
+- Use `hermes auth list` to view stored credentials
+- Use `hermes auth add/remove/reset` to manage API keys
