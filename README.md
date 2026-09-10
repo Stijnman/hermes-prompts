@@ -4,79 +4,52 @@ Useful, unknown, and invented prompts for [Hermes Agent](https://github.com/Nous
 
 Copy-paste into the CLI or gateway. No API keys live in this repo.
 
-```
-hermes-prompts/
-├── README.md
-├── LICENSE
-├── .gitignore
-├── LIBRARY.md                 # one-file library (start here)
-├── ALL-IN-ONE.md              # concatenated offline read
-├── docs/
-│   ├── slash-and-unknown.md   # slash commands + hidden gems
-│   ├── actual-use.md          # copy-paste one-shots
-│   └── uncensored-personas.md # adult / no-sermon voices
-├── config/
-│   ├── config.example.yaml    # safe example config
-│   └── env.template           # ~/.hermes/.env shape, keys blank
-└── examples/
-    └── quick-commands.yaml    # optional quick_commands snippet
-```
-
 ## Start in 60 seconds
 
 ```bash
 git clone https://github.com/Stijnman/hermes-prompts.git
 mkdir -p ~/.hermes/prompts
 cp hermes-prompts/LIBRARY.md ~/.hermes/prompts/library.md
+cp hermes-prompts/PERSONAS.md ~/.hermes/prompts/personas.md
+cp hermes-prompts/REFERENCE.md ~/.hermes/prompts/reference.md
 ```
 
-Then in a Hermes session:
+Then in a session:
 
 ```
 /steer "If you write more than 12 lines this turn, you failed the turn."
 ```
 
-Or paste any block from `LIBRARY.md`.
+## Find a prompt
 
-## What is in here
+| I want to… | File |
+| --- | --- |
+| Operator voices (Closer, Surgeon, …) | [PERSONAS.md](PERSONAS.md) |
+| One-shots (research, code, personal) | [REFERENCE.md](REFERENCE.md) |
+| Standing goals / background | [REFERENCE.md](REFERENCE.md) |
+| Adult / unfiltered voices | [PERSONAS.md](PERSONAS.md) |
+| Full invented library | [LIBRARY.md](LIBRARY.md) |
+| Config snippets | [examples/quick-commands.yaml](examples/quick-commands.yaml) |
+| Migrating from old files | [MIGRATION.md](MIGRATION.md) |
+
+## Files
 
 | File | What it is |
-|------|------------|
-| `LIBRARY.md` | Operator voices, standing goals, research, recovery, combos |
-| `ALL-IN-ONE.md` | Entire library concatenated |
-| `docs/slash-and-unknown.md` | Slash commands, config keys, hidden gems |
-| `docs/actual-use.md` | One-shot `hermes chat -q` and setup sequences |
-| `docs/uncensored-personas.md` | Adult / filthy / no-sermon personas |
-| `config/config.example.yaml` | Example `~/.hermes/config.yaml` (no secrets) |
-| `config/env.template` | Example `~/.hermes/.env` (blank keys) |
-| `actual-prompts.md` | Original one-shot list |
-| `useful-unknown-prompts.md` | Original unknown-gems list |
+| --- | --- |
+| `LIBRARY.md` | Core invented prompts + indexes |
+| `PERSONAS.md` | Work-safe + adult voices, combos, safety |
+| `REFERENCE.md` | Copy-paste one-shots and in-session blocks |
+| `config/config.example.yaml` | Example config, no secrets |
+| `config/env.template` | Blank `.env` shape |
+| `archive/` | Pointers to deprecated originals |
 
-## Rules of the road
+## Rules
 
-- Secrets stay in `~/.hermes/.env`. Never in `config.yaml`. Never in git.
-- `/yolo` skips approvals. Do not pair it with a sex persona. Do not leave it on.
-- Uncensored **voice** ≠ jailbreak exploit. This repo does not ship GODMODE payloads.
-- Adults only in the persona file. If an age could be misread as under 18, stop.
-
-## Suggested first config
-
-```bash
-hermes doctor
-hermes config check
-hermes config set approvals.mode smart
-hermes config set compression.threshold 0.60
-hermes config set security.redact_secrets true
-```
-
-Primary model IDs that existed in September 2026:
-
-- `gemini-3.8-flash` (newest Flash)
-- `gemini-3.5-flash` (safe default)
-- Native Gemini base URL: `https://generativelanguage.googleapis.com/v1beta`
-
-OpenRouter `:free` models often 404 if workspace guardrails or ZDR block free endpoints that train or publish. That is an account setting, not a dead slug.
+- Secrets stay in `~/.hermes/.env`. Never in YAML. Never in git.
+- Do not pair `/yolo` with an adult persona.
+- Uncensored voice ≠ jailbreak. No GODMODE payloads here.
+- Adults only in unfiltered personas. If an age could be misread as under 18, stop.
 
 ## License
 
-MIT. Prompts are yours to fork. Do not commit keys.
+MIT. Fork freely. Do not commit keys.

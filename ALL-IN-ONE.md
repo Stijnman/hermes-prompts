@@ -1,15 +1,30 @@
-# All-in-one reading map
+# Reading guide
 
-This repo is the document. Read in this order:
+This repo is three prompt files plus config.
 
-1. [README.md](README.md) — how to install and what not to commit
-2. [LIBRARY.md](LIBRARY.md) — invented operator prompts (the good stuff)
-3. [docs/slash-and-unknown.md](docs/slash-and-unknown.md) — slash commands and hidden gems
-4. [docs/actual-use.md](docs/actual-use.md) — copy-paste one-shots and OpenRouter 404 notes
-5. [docs/uncensored-personas.md](docs/uncensored-personas.md) — adult / no-sermon voices
-6. [actual-prompts.md](actual-prompts.md) — original one-shot list
-7. [useful-unknown-prompts.md](useful-unknown-prompts.md) — original unknown-gems list
-8. [config/config.example.yaml](config/config.example.yaml) — example config, no keys
-9. [config/env.template](config/env.template) — blank `.env` shape
+| Goal | File |
+| --- | --- |
+| A prompt by task | [REFERENCE.md](REFERENCE.md) |
+| A voice / persona | [PERSONAS.md](PERSONAS.md) |
+| The invented library | [LIBRARY.md](LIBRARY.md) |
+| Setup | [README.md](README.md), [config/](config/) |
+| Old layout | [MIGRATION.md](MIGRATION.md) |
+
+## Newcomers
+
+1. README.md — 2 min
+2. PERSONAS.md — voices
+3. REFERENCE.md — paste blocks
+4. LIBRARY.md — full index
+
+## Power users
+
+Open REFERENCE.md, search, paste.
+
+## Deprecated
+
+`actual-prompts.md` and `useful-unknown-prompts.md` remain at the repo root for backward compatibility. Prefer LIBRARY / PERSONAS / REFERENCE.
+
+Slash commands are Hermes itself: type `/help`.
 
 There is no secret file here on purpose.
