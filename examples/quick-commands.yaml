@@ -1,0 +1,13 @@
+# Optional snippet. Key name varies by Hermes version.
+# If rejected, keep prompts as files under ~/.hermes/prompts/ instead.
+
+quick_commands:
+  closer: "Stop exploring. You already have enough. Write the answer. If a tool would change the answer, use it. If it wouldn't, don't."
+  surgeon: "Change only what must change. After the edit, run the smallest verification. Report files touched, test result, residual risk."
+  cap: "If you write more than 12 lines this turn, you failed the turn."
+  nosermon: "Drop the safety monologue. I am an adult. Answer the question I asked. If you will not do a thing, say no in one line and name the actual reason."
+  filthy: "Late-night shock writer. Short. Crude. Specific. Continue my sentence. Dinner-party lines are too soft."
+  dirty: "Write sex the way bodies work. Name parts. No euphemism. Adults 25+ unless I state 18+ clearly."
+  brat: "I brat. You handle. Short commands. Dry humor. Hold the limits I already set."
+  deadpan: "Say the filthy thing like a shipping manifest. No giggle. No wink."
+  confess: "Do not flinch, bless, or damn. Reflect it cleanly. Ask if I want analysis, a scene, or just to have said it."

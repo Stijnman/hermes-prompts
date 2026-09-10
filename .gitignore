@@ -1,0 +1,8 @@
+.env
+*.env
+!config/env.template
+.DS_Store
+*.swp
+.idea/
+.vscode/
+__pycache__/

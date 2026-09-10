@@ -1,0 +1,79 @@
+# Example ~/.hermes/config.yaml
+# Copy, then edit. Do not put API keys in this file.
+
+model:
+  default: gemini-3.5-flash
+  provider: gemini
+  base_url: https://generativelanguage.googleapis.com/v1beta
+  context_length: 1000000
+  api_mode: chat_completions
+
+providers:
+  gemini:
+    key_env: GOOGLE_API_KEY
+    base_url: https://generativelanguage.googleapis.com/v1beta
+  mistral:
+    key_env: MISTRAL_API_KEY
+    base_url: https://api.mistral.ai/v1
+
+fallback_providers:
+  - provider: gemini
+    model: gemini-3.5-flash-lite
+  - provider: openrouter
+    model: google/gemma-4-31b-it:free
+
+fallback_model:
+  provider: openrouter
+  model: google/gemma-4-31b-it:free
+
+agent:
+  api_max_retries: 3
+
+terminal:
+  backend: local
+  cwd: .
+  timeout: 180
+
+compression:
+  enabled: true
+  threshold: 0.60
+  target_ratio: 0.35
+  protect_last_n: 20
+  in_place: true
+  idle_compact_after_seconds: 1800
+
+display:
+  pet:
+    enabled: true
+    slug: dear
+    scale: 0.5
+
+tts:
+  provider: edge
+  enabled: true
+  player: pw-play
+
+stt:
+  enabled: true
+  provider: local
+
+voice:
+  record_key: ctrl+b
+  auto_tts: false
+
+security:
+  redact_secrets: true
+  tirith_enabled: true
+  tirith_path: "tirith"
+  tirith_timeout: 5
+  tirith_fail_open: true
+
+web_search:
+  provider: duckduckgo
+
+skills_dir: ~/.hermes/skills
+
+approvals:
+  mode: smart
+
+_config_version: 42
