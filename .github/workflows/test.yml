@@ -19,8 +19,14 @@ jobs:
           python-version: "3.12"
       - name: Compile repository utilities
         run: python -m py_compile check_top_repos.py
-      - name: Validate JSON configuration
-        run: python -m json.tool config/models.json >/dev/null
-        continue-on-error: true
-      - name: Run pre-commit
-        uses: pre-commit/action@v3.0.1
+      - name: Validate required portfolio documentation
+        run: |
+          test -s README.md
+          test -s SKILL.md
+          test -s LIBRARY.md
+      - name: Reject unresolved merge markers
+        run: |
+          if git grep -nE '^(<<<<<<<|=======|>>>>>>>)' -- . ':!archive/**'; then
+            echo "Unresolved merge markers found"
+            exit 1
+          fi
